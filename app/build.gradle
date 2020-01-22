@@ -51,24 +51,31 @@ android {
 
         // This release includes the DEBUG selector and other various debug support features.
         //
-        release_dbg {
-            debuggable true
-            signingConfig signingConfigs.android
-        }
+//        release_dbg {
+//            debuggable true
+//            signingConfig signingConfigs.android
+//        }
 
     }
 
     // define apk naming behavior
-    // define apk naming behavior
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def project = "robotutor"
-            def SEP = "."
-            def buildType = variant.variantData.variantConfiguration.buildType.name
-            def version = variant.versionName
-
-            def newApkName = project + SEP + buildType + SEP + version + ".apk"
-            output.outputFile = new File(output.outputFile.parent, newApkName)
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            def project = "robotutor"
+//            def SEP = "."
+//            def buildType = variant.variantData.variantConfiguration.buildType.name
+//            def version = variant.versionName
+//
+//            def newApkName = project + SEP + buildType + SEP + version + ".apk"
+//            output.outputFile = new File(output.outputFile.parent, newApkName)
+//        }
+//    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName  ="robotutor" + "_v" +
+                    defaultConfig.versionName + "_" + defaultConfig.versionCode + "_" +
+                    new Date().format("yyyy-MM-dd") + "_" + buildType.name +
+                    ".apk"
         }
     }
 
@@ -84,35 +91,35 @@ android {
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:percent:25.2.0'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile project(':comp_banner')
-    compile project(':comp_ltkplus')
-    compile project(':util')
-    compile project(':mn_component')
-    compile project(':comp_listener')
-    compile project(':comp_reading')
-    compile project(':comp_questions')
-    compile project(':sm_component')
-    compile project(':fw_component')
-    compile project(':nl_component')
-    compile project(':comp_math')
-    compile project(':comp_akira')
-    compile project(':comp_bubblepop')
-    compile project(':comp_writing')
-    compile project(':comp_pointtap')
-    compile project(path: ':comp_ask')
-    compile project(path: ':comp_session')
-    compile project(path: ':comp_debug')
-    compile project(':comp_logging')
-    compile project(path: ':comp_counting')
-    compile project(path: ':comp_counting2')
-    compile project(path: ':comp_numberscale')
-    compile project(path: ':comp_nd')
-    compile project(path: ':comp_picmatch')
-    compile project(path: ':comp_bigmath')
-    compile project(path: ':comp_spelling')
+    implementation 'com.android.support:appcompat-v7:25.2.0'
+    implementation 'com.android.support:percent:25.2.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation project(':comp_banner')
+    implementation project(':comp_ltkplus')
+    implementation project(':util')
+    implementation project(':mn_component')
+    implementation project(':comp_listener')
+    implementation project(':comp_reading')
+    implementation project(':comp_questions')
+    implementation project(':sm_component')
+    implementation project(':fw_component')
+    implementation project(':nl_component')
+    implementation project(':comp_math')
+    implementation project(':comp_akira')
+    implementation project(':comp_bubblepop')
+    implementation project(':comp_writing')
+    implementation project(':comp_pointtap')
+    implementation project(path: ':comp_ask')
+    implementation project(path: ':comp_session')
+    implementation project(path: ':comp_debug')
+    implementation project(':comp_logging')
+    implementation project(path: ':comp_counting')
+    implementation project(path: ':comp_counting2')
+    implementation project(path: ':comp_numberscale')
+    implementation project(path: ':comp_nd')
+    implementation project(path: ':comp_picmatch')
+    implementation project(path: ':comp_bigmath')
+    implementation project(path: ':comp_spelling')
 
 }
 
